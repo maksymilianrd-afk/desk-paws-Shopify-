@@ -1,0 +1,161 @@
+<section class="hero" data-section-id="{{ section.id }}">
+
+  <!-- ░░ Background winding path decoration ░░ -->
+  <div class="hero__bg" aria-hidden="true">
+    <svg class="hero__path-svg" viewBox="0 0 1440 720" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <path
+        class="hero__path-line"
+        d="M -60 560 C 60 520 160 610 280 570 C 400 530 460 440 580 455 C 700 470 760 530 880 500 C 1000 470 1080 390 1200 410 C 1310 428 1380 470 1500 450"
+        stroke="#C4A98A"
+        stroke-width="2.5"
+        fill="none"
+        stroke-dasharray="8 18"
+        stroke-linecap="round"
+      />
+      <!-- Paw dot markers along path -->
+      <circle class="hero__paw-dot" cx="200" cy="568" r="5" fill="#C4A98A" opacity="0.45"/>
+      <circle class="hero__paw-dot" cx="390" cy="503" r="4" fill="#C4A98A" opacity="0.38"/>
+      <circle class="hero__paw-dot" cx="570" cy="452" r="5" fill="#C4A98A" opacity="0.42"/>
+      <circle class="hero__paw-dot" cx="760" cy="503" r="4" fill="#C4A98A" opacity="0.36"/>
+      <circle class="hero__paw-dot" cx="940" cy="470" r="5" fill="#C4A98A" opacity="0.42"/>
+      <circle class="hero__paw-dot" cx="1110" cy="408" r="4" fill="#C4A98A" opacity="0.36"/>
+      <circle class="hero__paw-dot" cx="1290" cy="428" r="5" fill="#C4A98A" opacity="0.40"/>
+      <!-- Scattered small accent marks -->
+      <circle cx="320" cy="180" r="3" fill="#C9963B" opacity="0.22"/>
+      <circle cx="1080" cy="120" r="4" fill="#C9963B" opacity="0.18"/>
+      <circle cx="700"  cy="90"  r="2.5" fill="#C9963B" opacity="0.20"/>
+    </svg>
+  </div>
+
+  <!-- ░░ Main body ░░ -->
+  <div class="page-width hero__body">
+
+    <!-- Left: text -->
+    <div class="hero__text">
+      <h1 class="hero__brand-name" data-reveal>DeskPaws</h1>
+
+      <p class="hero__eyebrow" data-reveal data-reveal-delay="1">Cozy Spaces,</p>
+
+      <h2 class="hero__headline" data-reveal data-reveal-delay="2">
+        Happy<br>Paws
+      </h2>
+
+      <p class="hero__tagline" data-reveal data-reveal-delay="3">
+        {{ section.settings.tagline | default: 'Thoughtful cat beds for the coziest naps and happiest purrs.' }}
+      </p>
+
+      <div data-reveal data-reveal-delay="4">
+        <a href="{{ section.settings.cta_url | default: routes.all_products_collection_url }}"
+           class="btn btn--dark btn--arrow">
+          {{ section.settings.cta_label | default: 'Shop Collection' }}
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: animated cat in basket -->
+    <div class="hero__visual" data-reveal data-reveal-delay="2">
+      <div class="hero__cat-stage" id="catStage">
+        <div class="hero__cat-img-wrap" id="catInner">
+          {%- if section.settings.hero_image != blank -%}
+            <img
+              src="{{ section.settings.hero_image | image_url: width: 700 }}"
+              alt="{{ section.settings.hero_image.alt | default: 'DeskPaws — cat in desk basket' }}"
+              class="hero__cat-img"
+              width="700" height="600"
+              loading="eager"
+              fetchpriority="high"
+            >
+          {%- else -%}
+            <div style="width:100%;aspect-ratio:7/6;background:var(--c-bg-warm);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:5rem;">🐱</div>
+          {%- endif -%}
+        </div>
+
+        <!-- Floating hearts -->
+        <i class="hero__heart hero__heart--1" aria-hidden="true">♥</i>
+        <i class="hero__heart hero__heart--2" aria-hidden="true">♥</i>
+        <i class="hero__heart hero__heart--3" aria-hidden="true">♥</i>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ░░ Trust bar ░░ -->
+  <div class="hero__trust">
+    <div class="page-width">
+      <div class="hero__trust-grid">
+
+        <div class="hero__trust-item" data-reveal>
+          <span class="hero__trust-icon">🌱</span>
+          <div>
+            <p class="hero__trust-title">Premium Materials</p>
+            <p class="hero__trust-desc">Safe, soft &amp; sustainable</p>
+          </div>
+        </div>
+
+        <div class="hero__trust-item" data-reveal data-reveal-delay="1">
+          <span class="hero__trust-icon">🐾</span>
+          <div>
+            <p class="hero__trust-title">Cat Approved</p>
+            <p class="hero__trust-desc">Loved by cats, trusted by humans</p>
+          </div>
+        </div>
+
+        <div class="hero__trust-item" data-reveal data-reveal-delay="2">
+          <span class="hero__trust-icon" style="color:var(--c-accent);">♥</span>
+          <div>
+            <p class="hero__trust-title">Made with Love</p>
+            <p class="hero__trust-desc">Thoughtful designs for happy naps</p>
+          </div>
+        </div>
+
+        <div class="hero__trust-item" data-reveal data-reveal-delay="3">
+          <span class="hero__trust-icon">🌿</span>
+          <div>
+            <p class="hero__trust-title">Designed for Comfort</p>
+            <p class="hero__trust-desc">Ergonomic, supportive, and cozy</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+{{ 'hero-animation.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Cat in basket image"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Thoughtful cat beds for the coziest naps and happiest purrs."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button text",
+      "default": "Shop Collection"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA button link"
+    }
+  ],
+  "presets": [
+    { "name": "Hero" }
+  ]
+}
+{% endschema %}

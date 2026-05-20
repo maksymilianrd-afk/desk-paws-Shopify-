@@ -1,41 +1,62 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="{{ settings.color_background }}">
+<html lang="{{ request.locale.iso_code }}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EDE0D4">
 
-    <title>
-      {{ page_title }}
-      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}
-      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
-    </title>
+  <title>
+    {{ page_title }}
+    {%- if current_page != 1 %} — Page {{ current_page }}{% endif %}
+    {%- unless page_title contains shop.name %} — {{ shop.name }}{% endunless %}
+  </title>
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
 
-    {{ content_for_header }}
+  <!-- Open Graph -->
+  <meta property="og:site_name"   content="{{ shop.name }}">
+  <meta property="og:title"       content="{{ page_title }}">
+  <meta property="og:type"        content="website">
+  {%- if page_image -%}
+    <meta property="og:image" content="{{ page_image | image_url: width: 1200 }}">
+  {%- endif -%}
 
-    {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'theme.css' | asset_url | stylesheet_tag }}
+  <!-- Canonical -->
+  <link rel="canonical" href="{{ canonical_url }}">
 
-    <script>
-      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-    </script>
-  </head>
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <body class="template-{{ template.name }}">
-    {% section 'announcement-bar' %}
-    {% section 'header' %}
+  <!-- Fonts: Fredoka One (brand) + Playfair Display (display) + DM Sans (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <main id="MainContent" class="content-for-layout" role="main" tabindex="-1">
-      {{ content_for_layout }}
-    </main>
+  {{ content_for_header }}
 
-    {% section 'footer' %}
+  {{ 'base.css'  | asset_url | stylesheet_tag }}
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
 
-    {{ 'global.js' | asset_url | script_tag }}
-  </body>
+  <script>
+    document.documentElement.classList.replace('no-js', 'js');
+  </script>
+</head>
+
+<body class="template-{{ template.name }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
+
+  <a class="skip-to-content" href="#MainContent">Skip to content</a>
+
+  {% section 'announcement-bar' %}
+  {% section 'header' %}
+
+  <main id="MainContent" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  {{ 'global.js' | asset_url | script_tag }}
+
+</body>
 </html>

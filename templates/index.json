@@ -2,27 +2,41 @@
   "sections": {
     "hero": {
       "type": "hero",
-      "settings": {}
+      "settings": {
+        "tagline": "Thoughtful cat beds for the coziest naps and happiest purrs.",
+        "cta_label": "Shop Collection"
+      }
     },
     "product-highlight": {
       "type": "product-highlight",
-      "settings": {}
+      "settings": {
+        "title": "The DeskPaws Bucket",
+        "badge": "New Arrival"
+      }
     },
     "how-it-works": {
       "type": "how-it-works",
-      "settings": {}
+      "settings": {
+        "title": "Ready in Three Steps"
+      }
     },
     "features": {
       "type": "features",
-      "settings": {}
+      "settings": {
+        "title": "Built for Cats. Loved by Owners."
+      }
     },
     "testimonials": {
       "type": "testimonials",
-      "settings": {}
+      "settings": {
+        "title": "The Reviews Are Purrfect"
+      }
     },
     "faq": {
       "type": "faq",
-      "settings": {}
+      "settings": {
+        "title": "We Have Answers"
+      }
     }
   },
   "order": [

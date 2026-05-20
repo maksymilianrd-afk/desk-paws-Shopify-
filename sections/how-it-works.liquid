@@ -1,0 +1,82 @@
+<section class="how-it-works" data-section-id="{{ section.id }}">
+  <div class="page-width">
+
+    <div class="how-it-works__header">
+      <p class="eyebrow" data-reveal>Simple Setup</p>
+      <h2 data-reveal data-reveal-delay="1">
+        {{ section.settings.title | default: 'Ready in Three Steps' }}
+      </h2>
+    </div>
+
+    <div class="how-it-works__steps">
+
+      {%- for i in (1..3) -%}
+        {%- assign emoji_key   = 'step_' | append: i | append: '_emoji' -%}
+        {%- assign title_key   = 'step_' | append: i | append: '_title' -%}
+        {%- assign desc_key    = 'step_' | append: i | append: '_desc' -%}
+
+        {%- assign defaults_emoji = '🔧,🐱,😴' | split: ',' -%}
+        {%- assign defaults_title = 'Clamp It On,Set Your Cat Inside,Watch Them Nap' | split: ',' -%}
+        {%- assign defaults_desc  = 'Attach the non-scratch clamp to any desk edge up to 2.5 inches thick — no tools needed.,Your cat will discover it in minutes. A little catnip helps too.,Sit back and enjoy the warmest co-worker you have ever had.' | split: ',' -%}
+
+        {%- assign idx = forloop.index0 -%}
+
+        <div class="step-card" data-reveal data-reveal-delay="{{ forloop.index }}">
+          <span class="step-card__emoji">{{ section.settings[emoji_key] | default: defaults_emoji[idx] }}</span>
+          <div class="step-card__number">{{ forloop.index }}</div>
+          <h3 class="step-card__title">{{ section.settings[title_key] | default: defaults_title[idx] }}</h3>
+          <p class="step-card__desc">{{ section.settings[desc_key] | default: defaults_desc[idx] }}</p>
+        </div>
+      {%- endfor -%}
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section heading",
+      "default": "Ready in Three Steps"
+    },
+    {
+      "type": "text",  "id": "step_1_emoji", "label": "Step 1 — Emoji", "default": "🔧"
+    },
+    {
+      "type": "text",  "id": "step_1_title", "label": "Step 1 — Title", "default": "Clamp It On"
+    },
+    {
+      "type": "textarea", "id": "step_1_desc",  "label": "Step 1 — Description",
+      "default": "Attach the non-scratch clamp to any desk edge up to 2.5 inches thick — no tools needed."
+    },
+    {
+      "type": "text",  "id": "step_2_emoji", "label": "Step 2 — Emoji", "default": "🐱"
+    },
+    {
+      "type": "text",  "id": "step_2_title", "label": "Step 2 — Title", "default": "Set Your Cat Inside"
+    },
+    {
+      "type": "textarea", "id": "step_2_desc",  "label": "Step 2 — Description",
+      "default": "Your cat will discover it in minutes. A little catnip helps too."
+    },
+    {
+      "type": "text",  "id": "step_3_emoji", "label": "Step 3 — Emoji", "default": "😴"
+    },
+    {
+      "type": "text",  "id": "step_3_title", "label": "Step 3 — Title", "default": "Watch Them Nap"
+    },
+    {
+      "type": "textarea", "id": "step_3_desc",  "label": "Step 3 — Description",
+      "default": "Sit back and enjoy the warmest co-worker you have ever had."
+    }
+  ],
+  "presets": [
+    { "name": "How It Works" }
+  ]
+}
+{% endschema %}

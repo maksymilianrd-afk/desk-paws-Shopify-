@@ -1,0 +1,123 @@
+<section class="testimonials" data-section-id="{{ section.id }}">
+  <div class="page-width">
+
+    <div class="testimonials__header">
+      <p class="eyebrow" data-reveal>Happy Cats &amp; Owners</p>
+      <h2 data-reveal data-reveal-delay="1">
+        {{ section.settings.title | default: 'The Reviews Are Purrfect' }}
+      </h2>
+      <p data-reveal data-reveal-delay="2">
+        {{ section.settings.subtitle | default: 'Thousands of cats have claimed their desk spot. Here is what their humans say.' }}
+      </p>
+    </div>
+
+    <div class="testimonials__track">
+
+      {%- for block in section.blocks -%}
+        <div class="testimonial-card" data-reveal data-reveal-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <p class="testimonial-card__stars">★★★★★</p>
+          <blockquote class="testimonial-card__quote">
+            "{{ block.settings.quote | default: 'My cat has not left this thing since the first day. It is the best purchase I have ever made as a cat parent.' }}"
+          </blockquote>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">
+              {%- if block.settings.avatar != blank -%}
+                <img src="{{ block.settings.avatar | image_url: width: 80 }}" alt="{{ block.settings.name }}">
+              {%- else -%}
+                {{ block.settings.emoji | default: '🐱' }}
+              {%- endif -%}
+            </div>
+            <div>
+              <p class="testimonial-card__name">{{ block.settings.name | default: 'Sarah M.' }}</p>
+              <p class="testimonial-card__handle">{{ block.settings.handle | default: '@sarahcatmom · Verified buyer' }}</p>
+            </div>
+          </div>
+        </div>
+      {%- else -%}
+
+        <!-- Default testimonials -->
+        <div class="testimonial-card" data-reveal data-reveal-delay="1">
+          <p class="testimonial-card__stars">★★★★★</p>
+          <blockquote class="testimonial-card__quote">
+            "My cat Mochi refuses to sleep anywhere else now. The fleece is incredibly soft and it has not budged once in six months."
+          </blockquote>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">🐾</div>
+            <div>
+              <p class="testimonial-card__name">Emma R.</p>
+              <p class="testimonial-card__handle">@emmaandmochi · Verified buyer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card" data-reveal data-reveal-delay="2">
+          <p class="testimonial-card__stars">★★★★★</p>
+          <blockquote class="testimonial-card__quote">
+            "Installed in under two minutes. My cat jumped straight in. I actually cried a little — it was so cute."
+          </blockquote>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">😺</div>
+            <div>
+              <p class="testimonial-card__name">James T.</p>
+              <p class="testimonial-card__handle">@jtabbyCEO · Verified buyer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card" data-reveal data-reveal-delay="3">
+          <p class="testimonial-card__stars">★★★★★</p>
+          <blockquote class="testimonial-card__quote">
+            "Game changer for remote workers with cats. My desk is my cat's desk now and honestly, I am fine with that."
+          </blockquote>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">🌿</div>
+            <div>
+              <p class="testimonial-card__name">Priya K.</p>
+              <p class="testimonial-card__handle">@priyaworks · Verified buyer</p>
+            </div>
+          </div>
+        </div>
+
+      {%- endfor -%}
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "The Reviews Are Purrfect"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtext",
+      "default": "Thousands of cats have claimed their desk spot. Here is what their humans say."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "textarea", "id": "quote",  "label": "Review text" },
+        { "type": "text",     "id": "name",   "label": "Reviewer name" },
+        { "type": "text",     "id": "handle", "label": "Handle / tag" },
+        { "type": "text",     "id": "emoji",  "label": "Avatar emoji", "default": "🐱" },
+        { "type": "image_picker", "id": "avatar", "label": "Avatar photo (optional)" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    { "name": "Testimonials" }
+  ]
+}
+{% endschema %}

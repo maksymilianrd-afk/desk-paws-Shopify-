@@ -1,0 +1,53 @@
+{
+  "general": {
+    "title": "DeskPaws",
+    "password_page_title": "Coming soon"
+  },
+  "404": {
+    "title": "Page not found",
+    "subtext": "The page you were looking for does not exist.",
+    "back_to_home": "Back to home"
+  },
+  "cart": {
+    "title": "Your cart",
+    "empty": "Your cart is currently empty.",
+    "general": {
+      "continue_browsing_html": "<a href=\"/\">Continue browsing</a>",
+      "item": "item",
+      "items": "items"
+    },
+    "checkout": "Checkout",
+    "remove": "Remove",
+    "subtotal": "Subtotal"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": {
+        "label": "Quantity",
+        "increase": "Increase quantity",
+        "decrease": "Decrease quantity"
+      }
+    },
+    "facets": {
+      "sort_by_label": "Sort by"
+    }
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content",
+    "close": "Close",
+    "open_nav": "Open navigation",
+    "close_nav": "Close navigation"
+  },
+  "sections": {
+    "header": {
+      "menu": "Menu",
+      "cart": "Cart"
+    },
+    "footer": {
+      "copyright": "© {year} DeskPaws"
+    }
+  }
+}

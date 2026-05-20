@@ -1,0 +1,102 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="page-width">
+
+    <!-- Top grid -->
+    <div class="footer__top">
+
+      <!-- Brand column -->
+      <div class="footer__brand">
+        <span class="footer__brand-logo">DeskPaws</span>
+        <p class="footer__brand-desc">
+          {{ section.settings.brand_desc | default: 'Cozy spaces for happy paws. Designed for cats who insist on sharing your workday.' }}
+        </p>
+        <div class="footer__social">
+          {%- if section.settings.instagram != blank -%}
+            <a href="{{ section.settings.instagram }}" class="footer__social-link" aria-label="Instagram" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.75"/>
+                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.75"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+              </svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.tiktok != blank -%}
+            <a href="{{ section.settings.tiktok }}" class="footer__social-link" aria-label="TikTok" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.77 1.52V6.76a4.84 4.84 0 01-1-.07z"/>
+              </svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.facebook != blank -%}
+            <a href="{{ section.settings.facebook }}" class="footer__social-link" aria-label="Facebook" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Shop column -->
+      <div>
+        <p class="footer__col-title">Shop</p>
+        <ul class="footer__col-list">
+          <li><a href="/collections/all" class="footer__col-link">DeskPaws Bucket</a></li>
+          <li><a href="/collections/all" class="footer__col-link">All Products</a></li>
+          <li><a href="/pages/gift-cards" class="footer__col-link">Gift Cards</a></li>
+        </ul>
+      </div>
+
+      <!-- Help column -->
+      <div>
+        <p class="footer__col-title">Help</p>
+        <ul class="footer__col-list">
+          <li><a href="/pages/faq" class="footer__col-link">FAQ</a></li>
+          <li><a href="/pages/shipping" class="footer__col-link">Shipping &amp; Returns</a></li>
+          <li><a href="/pages/contact" class="footer__col-link">Contact Us</a></li>
+          <li><a href="/account" class="footer__col-link">My Account</a></li>
+        </ul>
+      </div>
+
+      <!-- About column -->
+      <div>
+        <p class="footer__col-title">About</p>
+        <ul class="footer__col-list">
+          <li><a href="/pages/our-story" class="footer__col-link">Our Story</a></li>
+          <li><a href="/blogs/news" class="footer__col-link">Blog</a></li>
+          <li><a href="/pages/gallery" class="footer__col-link">Cat Gallery</a></li>
+          <li><a href="/pages/press" class="footer__col-link">Press</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer__bottom">
+      <p>© {{ 'now' | date: '%Y' }} DeskPaws. All rights reserved.</p>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+        <a href="/policies/privacy-policy">Privacy</a>
+        <a href="/policies/terms-of-service">Terms</a>
+        <a href="/policies/refund-policy">Refund Policy</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "brand_desc",
+      "label": "Brand description",
+      "default": "Cozy spaces for happy paws. Designed for cats who insist on sharing your workday."
+    },
+    { "type": "url", "id": "instagram", "label": "Instagram URL" },
+    { "type": "url", "id": "tiktok",    "label": "TikTok URL" },
+    { "type": "url", "id": "facebook",  "label": "Facebook URL" }
+  ]
+}
+{% endschema %}

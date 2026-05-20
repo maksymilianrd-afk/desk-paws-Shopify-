@@ -1,0 +1,80 @@
+<header class="site-header" role="banner">
+  <div class="page-width header__inner">
+
+    <!-- Logo -->
+    <a href="{{ routes.root_url }}" class="header__logo" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo != blank -%}
+        <img
+          src="{{ section.settings.logo | image_url: width: 80 }}"
+          alt="{{ shop.name }}"
+          class="header__logo-img"
+          width="36" height="36"
+          loading="eager"
+        >
+      {%- else -%}
+        <span aria-hidden="true" style="font-size:1.4rem;">🐱</span>
+      {%- endif -%}
+      <span class="header__logo-text">DeskPaws</span>
+    </a>
+
+    <!-- Nav -->
+    <nav role="navigation" aria-label="Main menu">
+      <ul class="header__nav">
+        {%- for link in section.settings.menu.links -%}
+          <li>
+            <a href="{{ link.url }}" class="header__nav-link"
+              {% if link.active %}aria-current="page"{% endif %}>
+              {{ link.title }}
+            </a>
+          </li>
+        {%- else -%}
+          <li><a href="/collections/all" class="header__nav-link">Shop</a></li>
+          <li><a href="/pages/our-story" class="header__nav-link">Our Story</a></li>
+          <li><a href="/pages/gallery" class="header__nav-link">Gallery</a></li>
+          <li><a href="/blogs/news" class="header__nav-link">Blog</a></li>
+          <li><a href="/pages/contact" class="header__nav-link">Contact</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <!-- Actions -->
+    <div class="header__actions">
+      <!-- Cart -->
+      <a href="{{ routes.cart_url }}" class="header__cart-btn" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          <path d="M16 10a4 4 0 01-8 0" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="header__cart-count" aria-label="Items in cart" style="display:none;">0</span>
+      </a>
+
+      <!-- Mobile toggle -->
+      <button class="header__menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

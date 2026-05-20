@@ -1,0 +1,17 @@
+<div class="announcement-bar">
+  {{ section.settings.text }}
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Message",
+      "default": "🐾 Free shipping on all orders over $75 — Happy cats, happy homes."
+    }
+  ]
+}
+{% endschema %}

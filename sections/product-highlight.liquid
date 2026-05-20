@@ -1,0 +1,152 @@
+{%- assign featured = section.settings.product -%}
+
+<section class="product-highlight" data-section-id="{{ section.id }}">
+  <div class="page-width product-highlight__inner">
+
+    <!-- Media -->
+    <div class="product-highlight__media" data-reveal>
+      <div class="product-highlight__img-wrap">
+        {%- if section.settings.product_image != blank -%}
+          <img
+            src="{{ section.settings.product_image | image_url: width: 900 }}"
+            alt="{{ section.settings.product_image.alt | default: 'DeskPaws Desk Bucket' }}"
+            class="product-highlight__img"
+            width="900" height="1125"
+            loading="lazy"
+          >
+        {%- elsif featured != blank and featured.featured_image -%}
+          <img
+            src="{{ featured.featured_image | image_url: width: 900 }}"
+            alt="{{ featured.title }}"
+            class="product-highlight__img"
+            width="900" height="1125"
+            loading="lazy"
+          >
+        {%- else -%}
+          <div style="width:100%;height:100%;background:var(--c-bg-warm);display:flex;align-items:center;justify-content:center;font-size:6rem;">🐈</div>
+        {%- endif -%}
+      </div>
+      <span class="product-highlight__badge">{{ section.settings.badge | default: 'New Arrival' }}</span>
+    </div>
+
+    <!-- Text -->
+    <div class="product-highlight__text">
+      <p class="eyebrow" data-reveal>The Product</p>
+
+      <h2 class="product-highlight__title" data-reveal data-reveal-delay="1">
+        {{ section.settings.title | default: 'The DeskPaws Bucket' }}
+      </h2>
+
+      <p class="product-highlight__desc" data-reveal data-reveal-delay="2">
+        {{ section.settings.description | default: 'An attachable, fleece-lined cat hammock that clamps onto any desk edge — giving your cat their own cozy workspace right beside you. Designed to hold up to 15 lbs, it installs in seconds and folds flat for storage.' }}
+      </p>
+
+      <!-- Specs grid -->
+      <div class="product-highlight__specs" data-reveal data-reveal-delay="3">
+        <div class="spec-item">
+          <span class="spec-item__icon">⚡</span>
+          <div>
+            <span class="spec-item__label">Easy Install</span>
+            <span class="spec-item__value">Clamps on in 30 seconds</span>
+          </div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-item__icon">🐾</span>
+          <div>
+            <span class="spec-item__label">Holds up to 15 lbs</span>
+            <span class="spec-item__value">For cats of all sizes</span>
+          </div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-item__icon">✨</span>
+          <div>
+            <span class="spec-item__label">Ultra-soft Fleece</span>
+            <span class="spec-item__value">Machine washable liner</span>
+          </div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-item__icon">🛡️</span>
+          <div>
+            <span class="spec-item__label">Scratch-proof Clamp</span>
+            <span class="spec-item__value">Protects your desk surface</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <p class="product-highlight__price" data-reveal data-reveal-delay="3">
+        {%- if featured != blank -%}
+          {{ featured.price | money }}
+        {%- else -%}
+          {{ section.settings.price | default: '$79.00' }}
+        {%- endif -%}
+      </p>
+
+      <!-- Actions -->
+      <div class="product-highlight__actions" data-reveal data-reveal-delay="4">
+        {%- if featured != blank -%}
+          <form method="post" action="/cart/add" data-product-form>
+            <input type="hidden" name="id" value="{{ featured.selected_or_first_available_variant.id }}">
+            <button
+              type="submit"
+              class="btn btn--dark"
+              data-add-to-cart
+              data-default-text="Add to Cart — {{ featured.price | money }}"
+            >
+              Add to Cart — {{ featured.price | money }}
+            </button>
+          </form>
+        {%- else -%}
+          <a href="/collections/all" class="btn btn--dark">Shop Now</a>
+        {%- endif -%}
+        <a href="/pages/our-story" class="btn btn--outline">Learn More</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Highlight",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Override product image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "The DeskPaws Bucket"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "An attachable, fleece-lined cat hammock that clamps onto any desk edge — giving your cat their own cozy workspace right beside you."
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price (fallback if no product selected)",
+      "default": "$79.00"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge text",
+      "default": "New Arrival"
+    }
+  ],
+  "presets": [
+    { "name": "Product Highlight" }
+  ]
+}
+{% endschema %}
