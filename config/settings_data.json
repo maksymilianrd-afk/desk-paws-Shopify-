@@ -4,8 +4,7 @@
     "color_text": "#3D2B1F",
     "color_accent": "#C9963B",
     "color_button": "#3D2B1F",
-    "color_button_text": "#FDFAF6",
-    "type_body_size": 16
+    "color_button_text": "#FDFAF6"
   },
   "presets": {}
 }

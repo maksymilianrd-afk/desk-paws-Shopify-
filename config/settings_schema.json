@@ -43,33 +43,6 @@
     ]
   },
   {
-    "name": "Typography",
-    "settings": [
-      {
-        "type": "font_picker",
-        "id": "type_header_font",
-        "label": "Headings",
-        "default": "playfair_display_n7"
-      },
-      {
-        "type": "font_picker",
-        "id": "type_body_font",
-        "label": "Body text",
-        "default": "dm_sans_n4"
-      },
-      {
-        "type": "range",
-        "id": "type_body_size",
-        "min": 13,
-        "max": 18,
-        "step": 1,
-        "unit": "px",
-        "label": "Base font size",
-        "default": 16
-      }
-    ]
-  },
-  {
     "name": "Favicon",
     "settings": [
       {

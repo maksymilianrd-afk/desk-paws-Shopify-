@@ -50,22 +50,31 @@
 
     <!-- Visual grid -->
     <div class="features__visual" data-reveal data-reveal-delay="2">
-      {%- for i in (1..3) -%}
-        {%- assign img_key = 'image_' | append: i -%}
-        <div class="features__img-card">
-          {%- if section.settings[img_key] != blank -%}
-            <img
-              src="{{ section.settings[img_key] | image_url: width: 800 }}"
-              alt="{{ section.settings[img_key].alt }}"
-              loading="lazy"
-            >
-          {%- else -%}
-            <div style="width:100%;height:100%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:3rem;">
-              {%- if forloop.first %}🐾{% elsif forloop.index == 2 %}😴{% else %}♥{% endif -%}
-            </div>
-          {%- endif -%}
-        </div>
-      {%- endfor -%}
+
+      <div class="features__img-card">
+        {%- if section.settings.image_1 != blank -%}
+          <img src="{{ section.settings.image_1 | image_url: width: 800 }}" alt="{{ section.settings.image_1.alt }}" loading="lazy">
+        {%- else -%}
+          <div style="width:100%;height:100%;background:var(--c-bg);display:flex;align-items:center;justify-content:center;font-size:3rem;">🐾</div>
+        {%- endif -%}
+      </div>
+
+      <div class="features__img-card">
+        {%- if section.settings.image_2 != blank -%}
+          <img src="{{ section.settings.image_2 | image_url: width: 800 }}" alt="{{ section.settings.image_2.alt }}" loading="lazy">
+        {%- else -%}
+          <div style="width:100%;height:100%;background:var(--c-bg);display:flex;align-items:center;justify-content:center;font-size:3rem;">😴</div>
+        {%- endif -%}
+      </div>
+
+      <div class="features__img-card">
+        {%- if section.settings.image_3 != blank -%}
+          <img src="{{ section.settings.image_3 | image_url: width: 800 }}" alt="{{ section.settings.image_3.alt }}" loading="lazy">
+        {%- else -%}
+          <div style="width:100%;height:100%;background:var(--c-bg);display:flex;align-items:center;justify-content:center;font-size:3rem;">♥</div>
+        {%- endif -%}
+      </div>
+
     </div>
 
   </div>
